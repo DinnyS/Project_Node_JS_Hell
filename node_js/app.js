@@ -1,7 +1,14 @@
 const express = require('express');
+const morgan = require('morgan');
 
 const productRoutes = require('./routes/people');
-const morgan = require('morgan');
+const { connect, sync } = require('./config/database');
+
+async function initializeDatabase() {
+  await connect();
+  await sync();
+}
+initializeDatabase();
 
 const app = express();
 

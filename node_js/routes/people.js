@@ -1,24 +1,28 @@
 const express = require('express');
 
-const { data } = require('../data');
+// const { data } = require('../data');
+const People = require('../models/peoples');
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
-  res.send(data);
+router.get('/', async (req, res) => {
+  const peoples = await People.findAll();
+  res.send(peoples);
 });
 
-router.get('/:id', (req, res) => {
-  const peopleId = Number.parseInt(req.params.id);
-  const people = data.find((people) => people.id === peopleId);
+router.get('/:id', async (req, res) => {
+  const people = await People.findOne({
+    where: {
+      id: req.params.id
+    }
+  });
   res.json(people);
 });
 
 let currentPeopleId = 11;
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
   const { fname, lname, deathday, age, nationality, causeOfdeath, place, sin, time, hell, warden } = req.body;
-  const people = {
-    id: ++currentPeopleId,
+  const people = await People.create({ 
     fname,
     lname,
     deathday,
@@ -30,16 +34,17 @@ router.post('/', (req, res) => {
     time,
     hell,
     warden
-  };
-  data.push(people);
+  });
   res.json(people);
 });
 
-router.put('/:id', (req, res) => {
+router.put('/:id', async (req, res) => {
   const { fname, lname, deathday, age, nationality, causeOfdeath, place, sin, time, hell, warden } = req.body;
-  const peopleId = Number.parseInt(req.params.id);
-  const people = data.find((people) => people.id === peopleId);
-
+  const people = await People.findOne({
+    where: {
+      id: req.params.id
+    }
+  });
   people.fname = fname;
   people.lname = lname;
   people.deathday = deathday;
@@ -52,13 +57,17 @@ router.put('/:id', (req, res) => {
   people.hell = hell;
   people.warden = warden;
 
+  await people.save();
+
   res.json(people);
 });
 
-router.delete('/:id', (req, res) => {
-  const peopleId = Number.parseInt(req.params.id);
-  const peopleIndex = data.findIndex((people) => people.id === peopleId);
-  data.splice(peopleIndex, 1);
+router.delete('/:id', async (req, res) => {
+  await People.destroy({
+    where: {
+      id: req.params.id
+    }
+  });
   res.sendStatus(204);
 });
 
