@@ -150,7 +150,7 @@ padding-top: 100px;
 }
 
 .btn_Edit:hover{
-    background-color: #1258C1;
+    background-color: #1B75FD;
     color: #FFF;
     transition: 300ms;
 }
@@ -166,7 +166,7 @@ padding-top: 100px;
 }
 
 .btn_Delete:hover{
-    background-color: #CC2F37;
+    background-color: #FF303B;
     color: #FFF;
     transition: 300ms;
 }

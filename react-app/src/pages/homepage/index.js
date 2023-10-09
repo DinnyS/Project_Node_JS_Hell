@@ -140,7 +140,7 @@ function Homepage({className}) {
 export default styled(Homepage)`
 
 background-color: #2D2A2A;
-height: 120vh;
+height: 130vh;
 padding-top: 100px;
 
 .table_Container{
@@ -172,6 +172,12 @@ padding-top: 100px;
 }
 
 
+.button_Zone_map{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 30px 0 30px 0;
+}
 
 
 .add_btn_container{

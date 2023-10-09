@@ -23,19 +23,18 @@ export function Navbar({className}){
                                 </button>
                             </form>
 
-                            <ul className="navbar-nav">
-                                <li className="nav-item dropdown">
-                                    <a className="nav-link dropdown-toggle" href="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        Dropdown
-                                    </a>
-                                    <ul className="dropdown-menu">
-                                        <li><a className="dropdown-item" href="/">Action</a></li>
-                                        <li><a className="dropdown-item" href="/">Another action</a></li>
-                                        <li><hr className="dropdown-divider"/></li>
-                                        <li><a className="dropdown-item" href="/">Something else here</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
+                            <div className="dropdown">
+                                <select className='dropdownBox'>
+                                    <option value="option1">ขุม 1 : ป่ามรณะ</option>
+                                    <option value="option2">ขุม 2 : ปราสาทแห่งความหวัง</option>
+                                    <option value="option3">ขุม 3 : หวานแต่เค็ม</option>
+                                    <option value="option4">ขุม 4 : ศาลาความหวาดกลัว</option>
+                                    <option value="option1">ขุม 5 : แม่น้ำสีชาด</option>
+                                    <option value="option2">ขุม 6 : ปีศาจกระหายน้ำตา</option>
+                                    <option value="option3">ขุม 7 : คนไม่จำเป็น</option>
+                                    <option value="option4">ขุม 8 : เสียงกรีดร้องของเวลา</option>
+                                </select>
+                            </div>
                         </div>
                     </nav>
                 </div>
@@ -85,6 +84,22 @@ export default styled(Navbar)`
     background-color: white;
     border-radius: 50%;
 }
+
+.dropdownBox{
+    width: 250px;
+    height: 35px;
+    padding-left: 10px;
+
+    border-radius: 10px;
+}
+
+option:hover{
+    background-color: #CC2F37;
+}
+
+
+
+
 
 
 /* height: 60px;
