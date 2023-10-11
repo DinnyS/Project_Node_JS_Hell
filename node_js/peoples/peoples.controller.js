@@ -3,6 +3,7 @@ const service = require('./peoples.service')
 
 // const { data } = require('../data');
 
+
 const router = express.Router();
 
 router.get('/', async (req, res) => {

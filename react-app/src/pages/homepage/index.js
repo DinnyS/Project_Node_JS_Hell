@@ -1,37 +1,56 @@
-import React , { useState } from 'react'
+import React , { useState , useEffect } from 'react'
 import  Navbar  from '../../components/Navbar/index';
 import styled from 'styled-components';
-import dataUser from '../../model/data.json'
+
+// import dataUser from '../../model/data.json'
+
 import Footer from '../../components/Footer';
 import { useNavigate } from 'react-router-dom';
+import { fetchData } from '../../model/peopleController';
 
 
 function Homepage({className}) {
 
+  const [data, setData] = useState([]);
+  
+  useEffect(() => {
+    // Fetch data when the component mounts
+    fetchData('peoples') // Replace with your desired endpoint
+      .then((result) => {
+        setData(result);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
+
   const navigate = useNavigate();
 
-  const [currentPage, setCurrentPage] = useState(1); // หน้าปัจจุบัน
-  const itemsPerPage = 5; // จำนวนข้อมูลต่อหน้า
+  // const [currentPage, setCurrentPage] = useState(1); // หน้าปัจจุบัน
+  // const itemsPerPage = 5; // จำนวนข้อมูลต่อหน้า
 
-  // คำนวณหน้าตามข้อมูลทั้งหมดและหน้าปัจจุบัน
-  const totalPages = Math.ceil(dataUser.length / itemsPerPage);
+  
 
-  // ดึงข้อมูลที่ต้องการแสดงบนหน้าปัจจุบัน
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const currentPageData = dataUser.slice(startIndex, endIndex);
+  // // คำนวณหน้าตามข้อมูลทั้งหมดและหน้าปัจจุบัน
+  // const totalPages = Math.ceil(dataUser.length / itemsPerPage);
 
-  const nextPage = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage(currentPage + 1);
-    }
-  };
+  // // ดึงข้อมูลที่ต้องการแสดงบนหน้าปัจจุบัน
+  // const startIndex = (currentPage - 1) * itemsPerPage;
+  // const endIndex = startIndex + itemsPerPage;
+  // const currentPageData = dataUser.slice(startIndex, endIndex);
 
-  const prevPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-    }
-  };
+  // const nextPage = () => {
+  //   if (currentPage < totalPages) {
+  //     setCurrentPage(currentPage + 1);
+  //   }
+  // };
+
+  // const prevPage = () => {
+  //   if (currentPage > 1) {
+  //     setCurrentPage(currentPage - 1);
+  //   }
+  // };
 
   function goTOAddData(){
     navigate('/AddData');
@@ -55,79 +74,32 @@ function Homepage({className}) {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>8</td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>7</td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>Larry</td>
-              <td>the Bird</td>
-              <td>5</td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>Larry</td>
-              <td>the Bird</td>
-              <td>5</td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>Larry</td>
-              <td>the Bird</td>
-              <td>5</td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>Larry</td>
-              <td>the Bird</td>
-              <td>5</td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>Larry</td>
-              <td>the Bird</td>
-              <td>5</td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>Larry</td>
-              <td>the Bird</td>
-              <td>5</td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>Larry</td>
-              <td>the Bird</td>
-              <td>5</td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>Larry</td>
-              <td>the Bird</td>
-              <td>5</td>
-            </tr>
+
+
+            {data.map((item) => (
+              <tr>
+                <td key={item.id}>{item.id}</td>
+                <td key={item.id}>{item.fname}</td>
+                <td key={item.id}>{item.lname}</td>
+                <td key={item.id}>{item.hell}</td>
+              </tr>
+                ))}
+
+
+           
           
           </tbody>
         </table>
       </div>
 
-        <div className='button_Zone_map'>
+        {/* <div className='button_Zone_map'>
           <button onClick={prevPage} disabled={currentPage === 1}>
             หน้าก่อนหน้า
           </button>
           <button onClick={nextPage} disabled={currentPage === totalPages}>
             หน้าถัดไป
           </button>
-        </div>
+        </div> */}
         <div className='add_btn_container'>
           <button className='add_data_btn' onClick={goTOAddData}><i class="fa-solid fa-user-plus"></i> เพิ่มผู้ตกนรก +</button>
         </div>
