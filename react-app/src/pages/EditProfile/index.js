@@ -1,157 +1,173 @@
-import React , { useState } from 'react';
+import React , {useState , useEffect} from 'react';
 import styled from 'styled-components';
 import Footer from '../../components/Footer';
 import NavbarNotatHomePage from '../../components/NavNotAtHomePage';
 import { useNavigate } from 'react-router-dom';
-import { addData } from '../../model/peopleController';
-
+import { getDataById } from '../../model/peopleController';
+import { getIdperson } from '../../model/peopleController';
 import Swal from 'sweetalert2'
+import { updateDataById } from '../../model/peopleController';
 
 
 
-function AddData({className}) {
 
+function EditNaja({className}) {
+
+
+
+    const [data, setData] = useState({
+        fname: '',
+        lname: '',
+        age: '',
+        nationality: '',
+        causeOfdeath: '',
+        place: '',
+        sin: '',
+        hell: '',
+        time: '',
+        warden: '',
+        deathday: '',
+      });
     const navigate = useNavigate();
 
-   
+    // const [fname, setFname] = useState([data.fname]);
+    // const [lname, setLname] = useState(data.lname);
+    // const [age, setAge] = useState(data.age);
+    // const [nationality, setNational] = useState(data.nationality);
+    // const [causeOfdeath, setCauseOfdeath] = useState(data.causeOfdeath);
+    // const [place, setPlace] = useState(data.place);
+    // const [sin, setSin] = useState(data.sin);
+    // const [hell, setHell] = useState(data.hell);
+    // const [time, setHowlong] = useState(data.time);
+    // const [warden, setWarden] = useState(data.warden);
+    // const [deathday, setDeathday] = useState(data.deathday);
 
-    const [isFormValid, setIsFormValid] = useState(true);
 
-
-    const [fname, setFname] = useState('');
-    const [lname, setLname] = useState('');
-    const [age, setAge] = useState('');
-    const [nationality, setNational] = useState('');
-    const [causeOfdeath, setCauseOfdeath] = useState('');
-    const [place, setPlace] = useState('');
-    const [sin, setSin] = useState('');
-    const [hell, setHell] = useState('');
-    const [time, setHowlong] = useState('');
-    const [warden, setWarden] = useState('');
-    const [deathday, setDeathday] = useState('');
-
-  function backToHome() {
-    navigate('/Homepage');
-  }
-
-  async function add_data_na() {
- 
-    const newData = {
-      fname,
-      lname,
-      age,
-      nationality,
-      causeOfdeath,
-      place,
-      sin,
-      hell,
-      time,
-      warden,
-      deathday
-    };
-
-    if (
-        !fname ||
-        !lname ||
-        !age ||
-        !nationality ||
-        !causeOfdeath ||
-        !place ||
-        !sin ||
-        hell === '' || 
-        !time ||
-        warden === '' ||
-        !deathday
-      ) {
-        setIsFormValid(false);
-        return(Swal.fire({
-            title: 'Error!',
-            text: 'กรุณาใส่ข้อมูลให้ครบถ้วน!',
-            icon: 'error',
-            confirmButtonText: 'รับทราบ'
-          })); 
+    function backToProfile() {
+        navigate('/Profile');
       }
 
-    try {
-      const addedData = await addData('peoples', newData);
-      console.log('Data added:', addedData);
-    } catch (error) {
-      console.error('Failed to add data:', error);
-    }
-  }
 
-  function checkadd(){
-    Swal.fire({
-        title: 'แน่ใจรึ?',
-        text: "กรุณาตรวจสอบข้อมูลให้ครบถ้วน!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'ข้อมูลแม่นล้าา',
-        cancelButtonText: 'ห๊ะ ขอกลับไปดูก่อน'
-      }).then((result) => {
-        if (result.isConfirmed) {
-            add_data_na()
-            backToHome();
-          Swal.fire(
-            'เพิ่มแล้ว!',
-            'เพิ่มคนลงนรกแล้ว 555',
-            'สำเร็จแล้วเด้อ'
-          )
+    useEffect(() => {
+        console.log(getIdperson())
+        getDataById('Peoples' , getIdperson()) 
+          .then((result) => {
+            setData(result);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      }, []);
+
+
+      function checkEdit(){
+        Swal.fire({
+            title: 'แน่ใจรึ?',
+            text: "กรุณาตรวจสอบข้อมูลให้ครบถ้วน!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'ข้อมูลแม่นล้าา',
+            cancelButtonText: 'ห๊ะ ขอกลับไปดูก่อน'
+          }).then((result) => {
+            if (result.isConfirmed) {
+
+                if (
+                    data.fname === '' ||
+                    data.lname === ''||
+                    data.age === '' ||
+                    data.nationality  === '' ||
+                    data.causeOfdeath  === '' ||
+                    data.place  === '' ||
+                    data.sin  === '' ||
+                    data.hell === '' ||
+                    data.time  === '' ||
+                    data.warden === '' ||
+                    data.deathday === '' 
+                ) {
+                  setIsFormValid(false);
+                  Swal.fire({
+                    title: 'Error!',
+                    text: 'กรุณาใส่ข้อมูลให้ครบถ้วน!',
+                    icon: 'error',
+                    confirmButtonText: 'รับทราบ'
+                  });
+                  return;
+                }
+
+                edit_data_na()
+                backToProfile();
+              Swal.fire(
+                'เรียบร้อย นะจ๊ะ!',
+                'แก้ไขข้อมูลแล้วเด้อ',
+                'สำเร็จแล้วเด้อ'
+              )
+            }
+          })
+      }
+
+      const [isFormValid, setIsFormValid] = useState(true);
+
+      async function edit_data_na() {
+      
+        try {
+          const editedData = await updateDataById('peoples', getIdperson(), data);
+          console.log('Data Edit:', editedData);
+        } catch (error) {
+          console.error('Failed to Edit data:', error);
         }
-      })
-  }
-    
+      }
+      
 
   return (
     <>
     <NavbarNotatHomePage/>
         <div className={className}>
         <div className='addDataContainer'>
-            <h1 className='header_addData'>เพิ่มผู้ตกนรก</h1>
+            <h1 className='header_addData'>ข้อมูลผู้ตกนรก</h1>
 
                 <div className="input-group">
                     <div className="input-left">
                         <label htmlFor="fname">ชื่อจริง</label>
-                        <input type="text" className="form-control" id="fname" placeholder="ชื่อจริง" value={fname} onChange={(e) => setFname(e.target.value)} />
+                        <input type="text" className="form-control" id="fname"  value={data.fname} onChange={(e) => setData({ ...data, fname: e.target.value })} />
                     </div>
                     <div className="input-right">
                         <label htmlFor="lname">นามสกุล Username</label>
-                        <input type="text" className="form-control" id="lname" placeholder="นามสกุล" value={lname} onChange={(e) => setLname(e.target.value)}/>
+                        <input type="text" className="form-control" id="lname" value={data.lname}  onChange={(e) => setData({ ...data, lname: e.target.value })}/>
                     </div>
                 </div>
 
                 <div className="input-group">
                     <div className="input-left">
                         <label htmlFor="age">อายุ</label>
-                        <input type="text" className="form-control" id="age" placeholder="อายุ" value={age} onChange={(e) => setAge(e.target.value)}/>
+                        <input type="text" className="form-control" id="age" value={data.age} onChange={(e) => setData({ ...data, age: e.target.value })}/>
                     </div>
                     <div className="input-right">
                         <label htmlFor="national">สัญชาติ</label>
-                        <input type="text" className="form-control" id="national" placeholder="สัญชาติ" value={nationality} onChange={(e) => setNational(e.target.value)}/>
+                        <input type="text" className="form-control" id="national" value={data.nationality} onChange={(e) => setData({ ...data, nationality: e.target.value })}/>
                     </div>
                 </div>
 
                 <div className="input-group">
                     <div className="input-left">
                         <label htmlFor="causeOfdeath">สาเหตุการตาย</label>
-                        <input type="text" className="form-control" id="causeOfdeath" placeholder="สาเหตุการตาย" value={causeOfdeath} onChange={(e) => setCauseOfdeath(e.target.value)}/>
+                        <input type="text" className="form-control" id="causeOfdeath" value={data.causeOfdeath} onChange={(e) => setData({ ...data, causeOfdeath: e.target.value })}/>
                     </div>
                     <div className="input-right">
                         <label htmlFor="place">สถานที่ตาย</label>
-                        <input type="text" className="form-control" id="place" placeholder="สถานที่ตาย" value={place} onChange={(e) => setPlace(e.target.value)}/>
+                        <input type="text" className="form-control" id="place" value={data.place} onChange={(e) => setData({ ...data, place: e.target.value })}/>
                     </div>
                 </div>
 
                 <div className="input-group">
                     <div className="input-left">
                         <label htmlFor="sin">คะแนนความชั่ว</label>
-                        <input type="text" className="form-control" id="sin" placeholder="คะแนนความชั่ว" value={sin} onChange={(e) => setSin(e.target.value)}/>
+                        <input type="text" className="form-control" id="sin" value={data.sin} onChange={(e) => setData({ ...data, sin: e.target.value })}/>
                     </div>
                     <div className="input-right">
                         <label htmlFor="kumnalok">ขุมนรก</label>
-                        <select className="form-control" id="kumnalok" value={hell} onChange={(e) => setHell(e.target.value)}>
+                        <select className="form-control" id="kumnalok" value={data.hell} onChange={(e) => setData({ ...data, hell: e.target.value })}>
                             <option disabled selected>กรุณาเลือก ขุมนรก</option>
                             <option value="1 ป่ามรณะ">ขุม 1 : ป่ามรณะ</option>
                             <option value="2 ปราสาทแห่งความหวัง">ขุม 2 : ปราสาทแห่งความหวัง</option>
@@ -162,17 +178,18 @@ function AddData({className}) {
                             <option value="7 คนไม่จำเป็น">ขุม 7 : คนไม่จำเป็น</option>
                             <option value="8 เสียงกรีดร้องของเวลา">ขุม 8 : เสียงกรีดร้องของเวลา</option>
                         </select>
+                        
                     </div>
                 </div>
 
                 <div className="input-group">
                     <div className="input-left">
                         <label htmlFor="howlong">ระยะเวลาชดใช้กรรม</label>
-                        <input type="text" className="form-control" id="howlong" placeholder="ระยะเวลาชดใช้กรรม" value={time} onChange={(e) => setHowlong(e.target.value)}/>
+                        <input type="text" className="form-control" id="howlong" value={data.time} onChange={(e) => setData({ ...data, time: e.target.value })}/>
                     </div>
                     <div className="input-right">
                         <label htmlFor="warden">ผู้คุม</label>
-                        <select className="form-control" id="warden" value={warden} onChange={(e) => setWarden(e.target.value)}>
+                        <select className="form-control" id="warden" value={data.warden} onChange={(e) => setData({ ...data, warden: e.target.value })}>
                             <option disabled selected>กรุณาเลือก ผู้คุม</option>
                             <option value="ป่าปรีรันย่า">ป่าปรีรันย่า</option>
                             <option value="หวังเป่าฮื้อ">หวังเป่าฮื้อ</option>
@@ -189,15 +206,14 @@ function AddData({className}) {
                 <div className="input-group">
                     <div className="input-left">
                         <label htmlFor="causeOfdeath">วันที่ตุย</label>
-                        <input type="text" className="form-control" id="deathday" placeholder="วันที่มรณะ" value={deathday} onChange={(e) => setDeathday(e.target.value)}/>
+                        <input type="text" className="form-control" id="deathday" value={data.deathday} onChange={(e) => setData({ ...data, deathday: e.target.value })}/>
                     </div>
                    
                 </div>
-
         </div>
-            <div className='button_zone'>
-                <button className='btn_Back'onClick={backToHome}><i class="fa-solid fa-caret-left"></i> ย้อนกลับ</button>
-                <button className='btn_Add' onClick={checkadd}><i class="fa-solid fa-user-plus"></i> เพิ่มข้อมูล</button>
+        <div className='button_zone'>
+                <button className='btn_Back'onClick={backToProfile}><i class="fa-solid fa-caret-left"></i> ย้อนกลับ</button>
+                <button className='btn_Edit' onClick={checkEdit}><i class="fa-solid fa-pencil"></i> ยืนยันการแก้ไข</button>
             </div>
         </div>
         <Footer/>
@@ -205,7 +221,7 @@ function AddData({className}) {
   )
 }
 
-export default styled(AddData)`
+export default styled(EditNaja)`
 
 background-color: #2D2A2A;
 height: 120vh;
@@ -267,18 +283,20 @@ padding-top: 100px;
     transition: 300ms;
 }
 
-.btn_Add{
+
+
+.btn_Edit{
     width: 250px;
     height: 40px;
     border-radius: 12px;
     margin-left: 10px;
-    background-color: #4D7B29;
+    background-color: #1258C1;
     color: #FFF;
     transition: 300ms;
 }
 
-.btn_Add:hover{
-    background-color: #66BC22;
+.btn_Edit:hover{
+    background-color: #1B75FD;
     color: #FFF;
     transition: 300ms;
 }

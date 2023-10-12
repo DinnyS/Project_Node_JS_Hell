@@ -7,6 +7,9 @@ import styled from 'styled-components';
 import Footer from '../../components/Footer';
 import { useNavigate } from 'react-router-dom';
 import { fetchData } from '../../model/peopleController';
+// import { getDataById } from '../../model/peopleController';
+import { setIdperson } from '../../model/peopleController';
+
 
 
 function Homepage({className}) {
@@ -56,6 +59,17 @@ function Homepage({className}) {
     navigate('/AddData');
   }
 
+  // const [nowId,setId] = useState('')
+
+
+  function goTOProfilebyID(id){
+    setIdperson(id)
+    // nowId = id
+    navigate(`/Profile`);
+    
+  }
+
+
   return (
     <>
     <Navbar/>
@@ -77,7 +91,7 @@ function Homepage({className}) {
 
 
             {data.map((item) => (
-              <tr>
+              <tr key={item.id} onClick={() => goTOProfilebyID(item.id)}>
                 <td key={item.id}>{item.id}</td>
                 <td key={item.id}>{item.fname}</td>
                 <td key={item.id}>{item.lname}</td>

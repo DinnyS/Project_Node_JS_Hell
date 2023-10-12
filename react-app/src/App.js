@@ -6,6 +6,7 @@ import  LoginPage from './pages/login/index'
 import  Homepage from './pages/homepage/index'
 import AddData from './pages/AddData';
 import Profilepage from './pages/Profilepage';
+import EditNaja from './pages/EditProfile';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/Homepage" element={<Homepage />} />
           <Route path="/AddData" element={<AddData />} />
           <Route path="/Profile" element={<Profilepage />} />
+          <Route path="/editNaja" element={<EditNaja />} />
         </Routes>
     </Router>
     </>
