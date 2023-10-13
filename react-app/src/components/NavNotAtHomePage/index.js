@@ -6,7 +6,6 @@ import styled from 'styled-components';
 function NavNotAtHomepage({className}){
     
 
-
     return(
         <>
             <div className={className}>

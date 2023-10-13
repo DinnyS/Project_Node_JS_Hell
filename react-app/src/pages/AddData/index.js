@@ -34,46 +34,12 @@ function AddData({className}) {
     navigate('/Homepage');
   }
 
-  async function add_data_na() {
+  async function add_data_na(theData) {
  
-    const newData = {
-      fname,
-      lname,
-      age,
-      nationality,
-      causeOfdeath,
-      place,
-      sin,
-      hell,
-      time,
-      warden,
-      deathday
-    };
-
-    if (
-        !fname ||
-        !lname ||
-        !age ||
-        !nationality ||
-        !causeOfdeath ||
-        !place ||
-        !sin ||
-        hell === '' || 
-        !time ||
-        warden === '' ||
-        !deathday
-      ) {
-        setIsFormValid(false);
-        return(Swal.fire({
-            title: 'Error!',
-            text: 'กรุณาใส่ข้อมูลให้ครบถ้วน!',
-            icon: 'error',
-            confirmButtonText: 'รับทราบ'
-          })); 
-      }
+    
 
     try {
-      const addedData = await addData('peoples', newData);
+      const addedData = await addData('peoples', theData);
       console.log('Data added:', addedData);
     } catch (error) {
       console.error('Failed to add data:', error);
@@ -92,7 +58,42 @@ function AddData({className}) {
         cancelButtonText: 'ห๊ะ ขอกลับไปดูก่อน'
       }).then((result) => {
         if (result.isConfirmed) {
-            add_data_na()
+            const newData = {
+                fname,
+                lname,
+                age,
+                nationality,
+                causeOfdeath,
+                place,
+                sin,
+                hell,
+                time,
+                warden,
+                deathday
+              };
+          
+              if (
+                  !fname ||
+                  !lname ||
+                  !age ||
+                  !nationality ||
+                  !causeOfdeath ||
+                  !place ||
+                  !sin ||
+                  hell === '' || 
+                  !time ||
+                  warden === '' ||
+                  !deathday
+                ) {
+                  setIsFormValid(false);
+                  return(Swal.fire({
+                      title: 'Error!',
+                      text: 'กรุณาใส่ข้อมูลให้ครบถ้วน!',
+                      icon: 'error',
+                      confirmButtonText: 'รับทราบ'
+                    })); 
+                }
+            add_data_na(newData)
             backToHome();
           Swal.fire(
             'เพิ่มแล้ว!',
@@ -152,7 +153,7 @@ function AddData({className}) {
                     <div className="input-right">
                         <label htmlFor="kumnalok">ขุมนรก</label>
                         <select className="form-control" id="kumnalok" value={hell} onChange={(e) => setHell(e.target.value)}>
-                            <option disabled selected>กรุณาเลือก ขุมนรก</option>
+                            <option value="" disabled selected>กรุณาเลือก ขุมนรก</option>
                             <option value="1 ป่ามรณะ">ขุม 1 : ป่ามรณะ</option>
                             <option value="2 ปราสาทแห่งความหวัง">ขุม 2 : ปราสาทแห่งความหวัง</option>
                             <option value="3 หวานแต่เค็ม">ขุม 3 : หวานแต่เค็ม</option>
@@ -173,7 +174,7 @@ function AddData({className}) {
                     <div className="input-right">
                         <label htmlFor="warden">ผู้คุม</label>
                         <select className="form-control" id="warden" value={warden} onChange={(e) => setWarden(e.target.value)}>
-                            <option disabled selected>กรุณาเลือก ผู้คุม</option>
+                            <option value="" disabled selected>กรุณาเลือก ผู้คุม</option>
                             <option value="ป่าปรีรันย่า">ป่าปรีรันย่า</option>
                             <option value="หวังเป่าฮื้อ">หวังเป่าฮื้อ</option>
                             <option value="ไต">ไต</option>

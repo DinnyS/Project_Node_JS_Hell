@@ -1,10 +1,29 @@
-import React from 'react';
+import React,{useState} from 'react';
 import styled from 'styled-components';
-
+import { setKeyword } from '../../model/peopleController';
+import { useNavigate } from 'react-router-dom';
+import { setTheHell } from '../../model/peopleController';
+import { getKeyword } from '../../model/peopleController';
 
 
 export function Navbar({className}){
     
+    const navigate = useNavigate();
+
+    const [keyword, setKeywordfilter] = useState('')
+
+
+    function search(){
+        setKeyword(keyword)
+        navigate('/Filterdata');
+    }
+
+    function filterHell(hell){
+        setTheHell(hell)
+        navigate('/Filterdata');
+    }
+
+
 
 
     return(
@@ -17,22 +36,23 @@ export function Navbar({className}){
                             <div className="profile" href="/"></div>
 
                             <form className="d-flex" role="search">
-                                <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-                                <button className="buttonSearch" type="submit">
+                                <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" onChange={(e) => setKeywordfilter(e.target.value)}/>
+                                <button className="buttonSearch" type="submit" onClick={search}> 
                                     <i className="fa-solid fa-magnifying-glass"></i>
                                 </button>
                             </form>
 
                             <div className="dropdown">
-                                <select className='dropdownBox'>
-                                    <option value="option1">ขุม 1 : ป่ามรณะ</option>
-                                    <option value="option2">ขุม 2 : ปราสาทแห่งความหวัง</option>
-                                    <option value="option3">ขุม 3 : หวานแต่เค็ม</option>
-                                    <option value="option4">ขุม 4 : ศาลาความหวาดกลัว</option>
-                                    <option value="option1">ขุม 5 : แม่น้ำสีชาด</option>
-                                    <option value="option2">ขุม 6 : ปีศาจกระหายน้ำตา</option>
-                                    <option value="option3">ขุม 7 : คนไม่จำเป็น</option>
-                                    <option value="option4">ขุม 8 : เสียงกรีดร้องของเวลา</option>
+                                <select className='dropdownBox' onChange={(e) => filterHell(e.target.value)}>
+                                <option value="" disabled selected>เลือกขุมนรก</option>
+                                <option value="1 ป่ามรณะ">ขุม 1 : ป่ามรณะ</option>
+                                <option value="2 ปราสาทแห่งความหวัง">ขุม 2 : ปราสาทแห่งความหวัง</option>
+                                <option value="3 หวานแต่เค็ม">ขุม 3 : หวานแต่เค็ม</option>
+                                <option value="4 ศาลาความหวาดกลัว">ขุม 4 : ศาลาความหวาดกลัว</option>
+                                <option value="5 แม่น้ำสีชาด">ขุม 5 : แม่น้ำสีชาด</option>
+                                <option value="6 ปีศาจกระหายน้ำตา">ขุม 6 : ปีศาจกระหายน้ำตา</option>
+                                <option value="7 คนไม่จำเป็น">ขุม 7 : คนไม่จำเป็น</option>
+                                <option value="8 เสียงกรีดร้องของเวลา">ขุม 8 : เสียงกรีดร้องของเวลา</option>
                                 </select>
                             </div>
                         </div>

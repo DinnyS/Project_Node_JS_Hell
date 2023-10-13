@@ -6,26 +6,44 @@ import styled from 'styled-components';
 
 import Footer from '../../components/Footer';
 import { useNavigate } from 'react-router-dom';
-import { fetchData } from '../../model/peopleController';
 // import { getDataById } from '../../model/peopleController';
 import { setIdperson } from '../../model/peopleController';
+import { getKeyword } from '../../model/peopleController';
+import { filterDataByFname } from '../../model/peopleController';
+import { filterDataByHell } from '../../model/peopleController';
+import { getTheHell } from '../../model/peopleController';
 
 
-
-function Homepage({className}) {
+function FilterData({className}) {
 
   const [data, setData] = useState([]);
   
   useEffect(() => {
     // Fetch data when the component mounts
-    fetchData('peoples') // Replace with your desired endpoint
+    filterDataByFname('peoples', getKeyword()) // Replace with your desired endpoint
       .then((result) => {
+        console.log(getKeyword())
         setData(result);
       })
       .catch((error) => {
         console.error(error);
       });
+
+      filterDataByHell( getTheHell()) // Replace with your desired endpoint
+      .then((result) => {
+        console.log(getTheHell())
+        setData(result);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+      
+
   }, []);
+
+  
+
+
 
 
   const navigate = useNavigate();
@@ -65,7 +83,7 @@ function Homepage({className}) {
       <div className={className}>
         
         <div className='table_Container'>
-          <h1 className='welcome_header'>Welcome to NaRok</h1>
+          <h1 className='welcome_header'>Filter Result</h1>
           <hr className='taiheader'></hr>
           <table className="table">
           <thead className='headerTable_Zone'>
@@ -109,7 +127,7 @@ function Homepage({className}) {
   )
 }
 
-export default styled(Homepage)`
+export default styled(FilterData)`
 
 background-color: #2D2A2A;
 height: 130vh;

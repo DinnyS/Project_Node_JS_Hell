@@ -52,6 +52,7 @@ export const addData = async (endpoint, data) => {
       throw error;
     }
   };
+
 let personID = ''
 
 export function setIdperson(id){
@@ -61,3 +62,54 @@ export function setIdperson(id){
 export function getIdperson(){
   return personID
 }
+
+
+let keyword = ''
+
+export function setKeyword(keywordset){
+  keyword = keywordset
+}
+
+export function getKeyword(){
+  return keyword
+}
+
+export const filterDataByFname = async (endpoint, name) => {
+  try {
+    const response = await axios.get(`${baseURL}/${endpoint}`);
+    const filteredData = response.data.filter(item => item.fname.includes(name));
+    return filteredData;
+  } catch (error) {
+    console.error(`Error filtering data by fname (${name}):`, error);
+    throw error;
+  }
+};
+
+
+let theHell = ''
+
+export function setTheHell(thisHell){
+  theHell = thisHell
+}
+
+export function getTheHell(){
+  return theHell
+}
+
+
+export const filterDataByHell = async (hellName) => {
+  try {
+    // Fetch the data first
+    const data = await fetchData('peoples'); // Replace with your desired endpoint
+    const filteredData = data.filter(item => item.hell === hellName);
+    return filteredData;
+  } catch (error) {
+    console.error(`Error filtering data by hell (${hellName}):`, error);
+    throw error;
+  }
+};
+
+
+
+
+
