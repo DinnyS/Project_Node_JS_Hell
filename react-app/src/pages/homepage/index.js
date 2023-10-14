@@ -94,7 +94,7 @@ function Homepage({className}) {
 
         <div className='page_btn-container'>
           {pageNumbers.map((page) => (
-            <button className='page_btn' key={page} onClick={() => handlePageChange(page)}>
+            <button className={`page_btn ${currentPage === page ? 'current-page-btn' : ''}`} key={page} onClick={() => handlePageChange(page)}>
               {page}
             </button>
           ))}
@@ -196,6 +196,13 @@ padding-top: 100px;
 
   transition: 300ms;
 }
+
+.current-page-btn {
+    background-color: #CC2F37; 
+    color: #FFF;
+    border: solid 1px #CC2F37;
+    transition: 300ms;
+  }
 
 .page_btn:hover{
   background-color: #CC2F37;

@@ -12,8 +12,9 @@ export function Navbar({className}){
     
     const navigate = useNavigate();
 
-    const [keyword, setKeywordfilter] = useState('')
+    const [keyword, setKeywordfilter] = useState(getKeyword())
     
+ 
 
     function search(){
         setKeyword(keyword)

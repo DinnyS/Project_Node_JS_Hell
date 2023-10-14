@@ -15,7 +15,7 @@ function AddData({className}) {
 
    
 
-    const [isFormValid, setIsFormValid] = useState(true);
+
 
 
     const [fname, setFname] = useState('');
@@ -85,7 +85,7 @@ function AddData({className}) {
                   warden === '' ||
                   !deathday
                 ) {
-                  setIsFormValid(false);
+         
                   return(Swal.fire({
                       title: 'Error!',
                       text: 'กรุณาใส่ข้อมูลให้ครบถ้วน!',

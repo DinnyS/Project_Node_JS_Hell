@@ -86,7 +86,6 @@ function EditNaja({className}) {
                     data.warden === '' ||
                     data.deathday === '' 
                 ) {
-                  setIsFormValid(false);
                   Swal.fire({
                     title: 'Error!',
                     text: 'กรุณาใส่ข้อมูลให้ครบถ้วน!',
@@ -107,7 +106,7 @@ function EditNaja({className}) {
           })
       }
 
-      const [isFormValid, setIsFormValid] = useState(true);
+
 
       async function edit_data_na() {
       

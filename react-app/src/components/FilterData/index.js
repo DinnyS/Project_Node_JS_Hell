@@ -37,7 +37,7 @@ function FilterData({className}) {
           const filteredDataByHell = await filterDataByHell(result, theHell);
           setData(filteredDataByHell);
         }else{
-            backToHome()
+            backToHome();
         }
   
       } catch (error) {
@@ -120,9 +120,9 @@ function FilterData({className}) {
         </table>
       </div>
 
-        <div className='page_btn-container'>
+      <div className='page_btn-container'>
           {pageNumbers.map((page) => (
-            <button className='page_btn' key={page} onClick={() => handlePageChange(page)}>
+            <button className={`page_btn ${currentPage === page ? 'current-page-btn' : ''}`} key={page} onClick={() => handlePageChange(page)}>
               {page}
             </button>
           ))}
@@ -232,6 +232,8 @@ padding-top: 100px;
   border: solid 1px #CC2F37;
   transition: 300ms;
 }
+
+
 
 
 
