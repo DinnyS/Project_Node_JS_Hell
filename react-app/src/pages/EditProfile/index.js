@@ -206,7 +206,7 @@ function EditNaja({className}) {
                 <div className="input-group">
                     <div className="input-left">
                         <label htmlFor="causeOfdeath">วันที่ตุย</label>
-                        <input type="text" className="form-control" id="deathday" value={data.deathday} onChange={(e) => setData({ ...data, deathday: e.target.value })}/>
+                        <input type="date" className="form-control" id="deathday" value={data.deathday} onChange={(e) => setData({ ...data, deathday: e.target.value })}/>
                     </div>
                    
                 </div>

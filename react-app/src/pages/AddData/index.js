@@ -190,7 +190,7 @@ function AddData({className}) {
                 <div className="input-group">
                     <div className="input-left">
                         <label htmlFor="causeOfdeath">วันที่ตุย</label>
-                        <input type="text" className="form-control" id="deathday" placeholder="วันที่มรณะ" value={deathday} onChange={(e) => setDeathday(e.target.value)}/>
+                        <input type="date" className="form-control" id="deathday" placeholder="วันที่มรณะ" value={deathday} onChange={(e) => setDeathday(e.target.value)}/>
                     </div>
                    
                 </div>
