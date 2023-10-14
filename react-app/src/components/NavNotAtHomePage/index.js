@@ -63,7 +63,7 @@ export default styled(NavNotAtHomepage)`
     height:50px;
     background-color: white;
     border-radius: 50%;
-
+    cursor: pointer;
 }
 
 
