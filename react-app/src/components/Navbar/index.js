@@ -25,6 +25,9 @@ export function Navbar({className}){
         navigate('/Filterdata');
     }
 
+    function backToHome(){
+        navigate('/homepage')
+    }
 
 
 
@@ -35,7 +38,7 @@ export function Navbar({className}){
                     <nav className="navbar navbar-expand-lg ">
                         <div className="container-fluid">
                             
-                            <img className='profile' src={Logo} alt="My Hell Logo" />
+                            <img className='profile' src={Logo} alt="My Hell Logo" onClick={backToHome}/>
 
                             <form className="d-flex" role="search">
                                 <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" onChange={(e) => setKeywordfilter(e.target.value)}/>
@@ -46,15 +49,15 @@ export function Navbar({className}){
 
                             <div className="dropdown">
                                 <select className='dropdownBox' onChange={(e) => filterHell(e.target.value)}>
-                                <option value="" disabled selected>เลือกขุมนรก</option>
-                                <option value="1 ป่ามรณะ">ขุม 1 : ป่ามรณะ</option>
-                                <option value="2 ปราสาทแห่งความหวัง">ขุม 2 : ปราสาทแห่งความหวัง</option>
-                                <option value="3 หวานแต่เค็ม">ขุม 3 : หวานแต่เค็ม</option>
-                                <option value="4 ศาลาความหวาดกลัว">ขุม 4 : ศาลาความหวาดกลัว</option>
-                                <option value="5 แม่น้ำสีชาด">ขุม 5 : แม่น้ำสีชาด</option>
-                                <option value="6 ปีศาจกระหายน้ำตา">ขุม 6 : ปีศาจกระหายน้ำตา</option>
-                                <option value="7 คนไม่จำเป็น">ขุม 7 : คนไม่จำเป็น</option>
-                                <option value="8 เสียงกรีดร้องของเวลา">ขุม 8 : เสียงกรีดร้องของเวลา</option>
+                                    <option value="" selected>เลือกขุมนรก</option>
+                                    <option value="1 ป่ามรณะ">ขุม 1 : ป่ามรณะ</option>
+                                    <option value="2 ปราสาทแห่งความหวัง">ขุม 2 : ปราสาทแห่งความหวัง</option>
+                                    <option value="3 หวานแต่เค็ม">ขุม 3 : หวานแต่เค็ม</option>
+                                    <option value="4 ศาลาความหวาดกลัว">ขุม 4 : ศาลาความหวาดกลัว</option>
+                                    <option value="5 แม่น้ำสีชาด">ขุม 5 : แม่น้ำสีชาด</option>
+                                    <option value="6 ปีศาจกระหายน้ำตา">ขุม 6 : ปีศาจกระหายน้ำตา</option>
+                                    <option value="7 คนไม่จำเป็น">ขุม 7 : คนไม่จำเป็น</option>
+                                    <option value="8 เสียงกรีดร้องของเวลา">ขุม 8 : เสียงกรีดร้องของเวลา</option>
                                 </select>
                             </div>
                         </div>

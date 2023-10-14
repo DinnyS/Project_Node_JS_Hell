@@ -1,10 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
 import Logo from '../../assets/img/WelcomeToHellLogo.png'
+import { useNavigate } from 'react-router-dom';
 
 
 
 function NavNotAtHomepage({className}){
+
+    const navigate = useNavigate('')
+
+    function backToHome(){
+        navigate('/homepage')
+    }
+
     
 
     return(
@@ -14,7 +22,7 @@ function NavNotAtHomepage({className}){
                     <nav className="navbar navbar-expand-lg ">
                         <div className="container-fluid">
                             
-                            <img className='profile' src={Logo} alt="My Hell Logo" />
+                            <img className='profile' src={Logo} alt="My Hell Logo" onClick={backToHome}/>
 
                         </div>
                     </nav>

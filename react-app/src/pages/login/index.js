@@ -28,7 +28,7 @@ function Login({className}) {
         <div className={className}>
             <div className="container">
                 <div class="center-container">
-                <img className='logoHell' src={Logo} alt="My Hell Logo" />
+                <img className='logoHell' src={Logo} alt="My Hell Logo"/>
                 <form class="login-form">
                     <h2 className='header_login'>Angels Login</h2>
                     <div className="username_container">
