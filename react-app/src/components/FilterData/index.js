@@ -12,35 +12,41 @@ import { getKeyword } from '../../model/peopleController';
 import { filterDataByFname } from '../../model/peopleController';
 import { filterDataByHell } from '../../model/peopleController';
 import { getTheHell } from '../../model/peopleController';
-
+import { fetchData } from '../../model/peopleController';
 
 function FilterData({className}) {
 
   const [data, setData] = useState([]);
   
   useEffect(() => {
-    // Fetch data when the component mounts
-    filterDataByFname('peoples', getKeyword()) // Replace with your desired endpoint
-      .then((result) => {
-        console.log(getKeyword())
-        setData(result);
-      })
-      .catch((error) => {
+    const fetchDataAndFilter = async () => {
+      try {
+        const result = await fetchData('peoples'); // Replace with your desired endpoint
+  
+        const keyword = getKeyword();
+        const theHell = getTheHell();
+  
+        if(keyword !== '' && theHell !== ''){
+            const filteredDataByFname = filterDataByFname(result, keyword);
+            const filteredDataByHell = await filterDataByHell(filteredDataByFname, theHell);
+            setData(filteredDataByHell);
+        }else if (keyword !== '') {
+          const filteredDataByFname = filterDataByFname(result, keyword);
+          setData(filteredDataByFname);
+        }else if (theHell !== '') {
+          const filteredDataByHell = await filterDataByHell(result, theHell);
+          setData(filteredDataByHell);
+        }else{
+            backToHome()
+        }
+  
+      } catch (error) {
         console.error(error);
-      });
-
-      filterDataByHell( getTheHell()) // Replace with your desired endpoint
-      .then((result) => {
-        console.log(getTheHell())
-        setData(result);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-      
-
-  }, []);
-
+      }
+    };
+  
+    fetchDataAndFilter();
+  }, [getKeyword(), getTheHell()]);
   
 
 
@@ -75,6 +81,10 @@ function FilterData({className}) {
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
+
+  function backToHome(){
+    navigate('/homepage')
+  }
 
 
   return (
@@ -119,7 +129,8 @@ function FilterData({className}) {
         </div>
 
         <div className='add_btn_container'>
-          <button className='add_data_btn' onClick={goTOAddData}><i class="fa-solid fa-user-plus"></i> เพิ่มผู้ตกนรก +</button>
+            <button className='btn_Back'onClick={backToHome}><i class="fa-solid fa-caret-left"></i> ย้อนกลับ</button>
+            <button className='btn_Add' onClick={goTOAddData}><i class="fa-solid fa-user-plus"></i> เพิ่มผู้ตกนรก +</button>
         </div>
       </div>
       <Footer/>
@@ -222,6 +233,37 @@ padding-top: 100px;
   transition: 300ms;
 }
 
+
+
+.btn_Back{
+    width: 250px;
+    height: 40px;
+    border-radius: 12px;
+    margin-right: 10px;
+    background-color: #a9a9a9;
+    transition: 300ms;
+}
+
+.btn_Back:hover{
+    background-color: #d9d9d9;
+    transition: 300ms;
+}
+
+.btn_Add{
+    width: 250px;
+    height: 40px;
+    border-radius: 12px;
+    margin-left: 10px;
+    background-color: #4D7B29;
+    color: #FFF;
+    transition: 300ms;
+}
+
+.btn_Add:hover{
+    background-color: #66BC22;
+    color: #FFF;
+    transition: 300ms;
+}
 
 
 `

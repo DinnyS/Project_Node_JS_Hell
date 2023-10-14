@@ -74,10 +74,9 @@ export function getKeyword(){
   return keyword
 }
 
-export const filterDataByFname = async (endpoint, name) => {
+export const filterDataByFname = (data, name) => {
   try {
-    const response = await axios.get(`${baseURL}/${endpoint}`);
-    const filteredData = response.data.filter(item => item.fname.includes(name));
+    const filteredData = data.filter(item => item.fname.includes(name));
     return filteredData;
   } catch (error) {
     console.error(`Error filtering data by fname (${name}):`, error);
@@ -97,10 +96,8 @@ export function getTheHell(){
 }
 
 
-export const filterDataByHell = async (hellName) => {
+export const filterDataByHell = (data, hellName) => {
   try {
-    // Fetch the data first
-    const data = await fetchData('peoples'); // Replace with your desired endpoint
     const filteredData = data.filter(item => item.hell === hellName);
     return filteredData;
   } catch (error) {
@@ -108,7 +105,6 @@ export const filterDataByHell = async (hellName) => {
     throw error;
   }
 };
-
 
 
 

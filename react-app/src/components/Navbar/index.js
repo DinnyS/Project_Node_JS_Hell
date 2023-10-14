@@ -13,7 +13,7 @@ export function Navbar({className}){
     const navigate = useNavigate();
 
     const [keyword, setKeywordfilter] = useState('')
-
+    
 
     function search(){
         setKeyword(keyword)
@@ -41,7 +41,7 @@ export function Navbar({className}){
                             <img className='profile' src={Logo} alt="My Hell Logo" onClick={backToHome}/>
 
                             <form className="d-flex" role="search">
-                                <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" onChange={(e) => setKeywordfilter(e.target.value)}/>
+                                <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" value={keyword} onChange={(e) => setKeywordfilter(e.target.value)}/>
                                 <button className="buttonSearch" type="submit" onClick={search}> 
                                     <i className="fa-solid fa-magnifying-glass"></i>
                                 </button>
