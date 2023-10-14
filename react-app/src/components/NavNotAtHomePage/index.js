@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Logo from '../../assets/img/WelcomeToHellLogo.png'
 
 
 
@@ -13,7 +14,7 @@ function NavNotAtHomepage({className}){
                     <nav className="navbar navbar-expand-lg ">
                         <div className="container-fluid">
                             
-                            <div className="profile" href="/"></div>
+                            <img className='profile' src={Logo} alt="My Hell Logo" />
 
                         </div>
                     </nav>

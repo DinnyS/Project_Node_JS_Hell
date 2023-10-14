@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import { setTheHell } from '../../model/peopleController';
 import { getKeyword } from '../../model/peopleController';
 
+import Logo from '../../assets/img/WelcomeToHellLogo.png'
+
 
 export function Navbar({className}){
     
@@ -33,7 +35,7 @@ export function Navbar({className}){
                     <nav className="navbar navbar-expand-lg ">
                         <div className="container-fluid">
                             
-                            <div className="profile" href="/"></div>
+                            <img className='profile' src={Logo} alt="My Hell Logo" />
 
                             <form className="d-flex" role="search">
                                 <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" onChange={(e) => setKeywordfilter(e.target.value)}/>
