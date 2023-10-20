@@ -197,8 +197,8 @@ function AddData({className}) {
 
         </div>
             <div className='button_zone'>
-                <button className='btn_Back'onClick={backToHome}><i class="fa-solid fa-caret-left"></i> ย้อนกลับ</button>
-                <button className='btn_Add' onClick={checkadd}><i class="fa-solid fa-user-plus"></i> เพิ่มข้อมูล</button>
+                <button className='btn_Back'onClick={backToHome}><i className="fa-solid fa-caret-left"></i> ย้อนกลับ</button>
+                <button className='btn_Add' onClick={checkadd}><i className="fa-solid fa-user-plus"></i> เพิ่มข้อมูล</button>
             </div>
         </div>
         <Footer/>

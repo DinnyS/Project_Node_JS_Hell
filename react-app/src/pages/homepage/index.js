@@ -10,22 +10,77 @@ import { fetchData } from '../../model/peopleController';
 // import { getDataById } from '../../model/peopleController';
 import { setIdperson } from '../../model/peopleController';
 
+// import { getKeyword } from '../../model/peopleController';
+// import { filterDataByFname } from '../../model/peopleController';
+// import { filterDataByHell } from '../../model/peopleController';
+// import { getTheHell } from '../../model/peopleController';
+
+// import { setKeyword } from '../../model/peopleController';
+// import { setTheHell } from '../../model/peopleController';
+
+
+
+
 
 
 function Homepage({className}) {
 
   const [data, setData] = useState([]);
+
   
+  
+  // useEffect(() => {
+
+  //       const filter = async () => {
+  //         try {
+  //             const result = await fetchData('peoples') 
+        
+  //             // setKeyword(getKeyword());
+  //             const keyword = getKeyword();
+  //             const theHell = getTheHell();
+              
+  //             console.log('This Data :' + keyword)
+
+  //             if(keyword !== '' && theHell !== ''){
+  //                 const filteredDataByFname = filterDataByFname(result, keyword);
+  //                 const filteredDataByHell = await filterDataByHell(filteredDataByFname, theHell);
+  //                 setData(filteredDataByHell);
+  //             }else if (keyword !== '' ) {
+  //               const filteredDataByFname = filterDataByFname(result, keyword);
+  //               setData(filteredDataByFname);
+  //             }else if (theHell !== '') {
+  //               const filteredDataByHell = await filterDataByHell(result, theHell);
+  //               setData(filteredDataByHell);
+  //             }
+  //             else if (keyword === '' && theHell === ''){
+  //               fetchData('peoples') 
+  //               .then((result) => {
+  //                 setData(result);
+  //               })
+  //               .catch((error) => {
+  //                 console.error(error);
+  //               });
+  //             }     
+      
+  //         } catch (error) {
+  //           console.error(error);
+  //         }
+  //       };
+
+  //     filter();
+  // }, [(getKeyword() , getTheHell())]);
+
+
   useEffect(() => {
-    // Fetch data when the component mounts
-    fetchData('peoples') // Replace with your desired endpoint
-      .then((result) => {
-        setData(result);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, []);
+        fetchData('peoples') 
+        .then((result) => {
+          setData(result);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+      }   
+  , []);
 
 
   const navigate = useNavigate();
@@ -61,7 +116,7 @@ function Homepage({className}) {
 
   return (
     <>
-    <Navbar/>
+    <Navbar/> 
       <div className={className}>
         
         <div className='table_Container'>
@@ -81,12 +136,13 @@ function Homepage({className}) {
 
             {data.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage).map((item) => (
               <tr key={item.id} onClick={() => goTOProfilebyID(item.id)}>
-                <td key={item.id}>{item.id}</td>
-                <td key={item.id}>{item.fname}</td>
-                <td key={item.id}>{item.lname}</td>
-                <td key={item.id}>{item.hell}</td>
+                <td>{item.id}</td>
+                <td>{item.fname}</td>
+                <td>{item.lname}</td>
+                <td>{item.hell}</td>
               </tr>
                 ))}
+          
           
           </tbody>
         </table>
@@ -101,7 +157,7 @@ function Homepage({className}) {
         </div>
 
         <div className='add_btn_container'>
-          <button className='add_data_btn' onClick={goTOAddData}><i class="fa-solid fa-user-plus"></i> เพิ่มผู้ตกนรก +</button>
+          <button className='add_data_btn' onClick={goTOAddData}><i className="fa-solid fa-user-plus"></i> เพิ่มผู้ตกนรก +</button>
         </div>
       </div>
       <Footer/>

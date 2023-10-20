@@ -7,7 +7,7 @@ import  Homepage from './pages/homepage/index'
 import AddData from './pages/AddData';
 import Profilepage from './pages/Profilepage';
 import EditNaja from './pages/EditProfile';
-import FilterData from './components/FilterData';
+import FilterData from './pages/FilterData';
 
 
 function App() {

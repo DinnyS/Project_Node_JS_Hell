@@ -1,4 +1,5 @@
 import axios from 'axios';
+// import { useState } from 'react';
 
 const baseURL = 'http://localhost:8000';
 
@@ -64,14 +65,18 @@ export function getIdperson(){
 }
 
 
-let keyword = ''
+let keyword = '';
+
 
 export function setKeyword(keywordset){
   keyword = keywordset
+  localStorage.setItem('keyword', keywordset);
 }
 
 export function getKeyword(){
-  return keyword
+  const storedKeyword = localStorage.getItem('keyword');
+  return storedKeyword || keyword;
+  // return keyword
 }
 
 export const filterDataByFname = (data, name) => {
@@ -105,7 +110,4 @@ export const filterDataByHell = (data, hellName) => {
     throw error;
   }
 };
-
-
-
 

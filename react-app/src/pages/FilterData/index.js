@@ -14,40 +14,110 @@ import { filterDataByHell } from '../../model/peopleController';
 import { getTheHell } from '../../model/peopleController';
 import { fetchData } from '../../model/peopleController';
 
+
+
+
 function FilterData({className}) {
 
   const [data, setData] = useState([]);
+  const [keyword , setKeyword] = useState(getKeyword());
+
+  const [prevKeyword, setPrevKeyword] = useState('');
+  const [prevTheHell, setPrevTheHell] = useState('');
+
+
+
+
   
   useEffect(() => {
-    const fetchDataAndFilter = async () => {
+    const filter = async () => {
       try {
-        const result = await fetchData('peoples'); // Replace with your desired endpoint
-  
-        const keyword = getKeyword();
-        const theHell = getTheHell();
-  
-        if(keyword !== '' && theHell !== ''){
+        if (prevKeyword !== getKeyword() || prevTheHell !== getTheHell()) {
+          setPrevKeyword(getKeyword());
+          setPrevTheHell(getTheHell());
+
+          const result = await fetchData('peoples'); 
+    
+          setKeyword(getKeyword());
+          // const keyword = getKeyword();
+          const theHell = getTheHell();
+          
+          console.log('This Data :' + keyword)
+
+          if(keyword !== '' && theHell !== ''){
+              const filteredDataByFname = filterDataByFname(result, keyword);
+              const filteredDataByHell = await filterDataByHell(filteredDataByFname, theHell);
+              setData(filteredDataByHell);
+          }else if (keyword !== '' ) {
             const filteredDataByFname = filterDataByFname(result, keyword);
-            const filteredDataByHell = await filterDataByHell(filteredDataByFname, theHell);
+            setData(filteredDataByFname);
+          }else if (theHell !== '') {
+            const filteredDataByHell = await filterDataByHell(result, theHell);
             setData(filteredDataByHell);
-        }else if (keyword !== '') {
-          const filteredDataByFname = filterDataByFname(result, keyword);
-          setData(filteredDataByFname);
-        }else if (theHell !== '') {
-          const filteredDataByHell = await filterDataByHell(result, theHell);
-          setData(filteredDataByHell);
-        }else{
-            backToHome();
-        }
+          }
+
+      else if(keyword == getKeyword()){
+        const filteredDataByFname = await filterDataByFname(result, keyword);
+        setData(filteredDataByFname);
+      }
+
+      else if(theHell == getKeyword()){
+        const filteredDataByHell = await filterDataByHell(result, theHell);
+        setData(filteredDataByHell);
+      }
+          
+      }
+      else{
+        backToHome();
+      }
+        
   
       } catch (error) {
         console.error(error);
       }
     };
   
-    fetchDataAndFilter();
-  }, [getKeyword(), getTheHell()]);
+    filter();
+  }, [(getKeyword()), getTheHell()]);
+
+  // useEffect(() => {
+  //   const filter = async () => {
+  //     try {
+  //         const result = await fetchData('peoples') 
+    
+  //         // setKeyword(getKeyword());
+  //         // const keyword = getKeyword();
+  //         const theHell = getTheHell();
+          
+  //         console.log('This Data :' + keyword)
+
+  //         if(keyword !== '' && theHell !== ''){
+  //             const filteredDataByFname = filterDataByFname(result, keyword);
+  //             const filteredDataByHell = await filterDataByHell(filteredDataByFname, theHell);
+  //             setData(filteredDataByHell);
+  //         }else if (keyword !== '' ) {
+  //           const filteredDataByFname = filterDataByFname(result, keyword);
+  //           setData(filteredDataByFname);
+  //         }else if (theHell !== '') {
+  //           const filteredDataByHell = await filterDataByHell(result, theHell);
+  //           setData(filteredDataByHell);
+  //         }
+  //         else{
+  //           console.log('This Data wa :' + keyword)
+           
+          
+  //           backToHome();
+  //         }     
   
+  //     } catch (error) {
+  //       console.error(error);
+  //     }
+  //   };
+  //   filter();
+  // }, [(getKeyword()), getTheHell()]);
+
+
+ 
 
 
 
@@ -109,10 +179,10 @@ function FilterData({className}) {
 
             {data.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage).map((item) => (
               <tr key={item.id} onClick={() => goTOProfilebyID(item.id)}>
-                <td key={item.id}>{item.id}</td>
-                <td key={item.id}>{item.fname}</td>
-                <td key={item.id}>{item.lname}</td>
-                <td key={item.id}>{item.hell}</td>
+                <td>{item.id}</td>
+                <td>{item.fname}</td>
+                <td>{item.lname}</td>
+                <td>{item.hell}</td>
               </tr>
                 ))}
           
@@ -129,8 +199,8 @@ function FilterData({className}) {
         </div>
 
         <div className='add_btn_container'>
-            <button className='btn_Back'onClick={backToHome}><i class="fa-solid fa-caret-left"></i> ย้อนกลับ</button>
-            <button className='btn_Add' onClick={goTOAddData}><i class="fa-solid fa-user-plus"></i> เพิ่มผู้ตกนรก +</button>
+            <button className='btn_Back'onClick={backToHome}><i className="fa-solid fa-caret-left"></i> ย้อนกลับ</button>
+            <button className='btn_Add' onClick={goTOAddData}><i className="fa-solid fa-user-plus"></i> เพิ่มผู้ตกนรก +</button>
         </div>
       </div>
       <Footer/>

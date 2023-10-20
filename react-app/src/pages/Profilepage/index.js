@@ -135,9 +135,9 @@ function Profile({className}) {
                 </div>
         </div>
             <div className='button_zone'>
-                <button className='btn_Back' onClick={backToHome}><i class="fa-solid fa-caret-left"></i> ย้อนกลับ</button>
-                <button className='btn_Edit' onClick={editTheData}><i class="fa-solid fa-pencil"></i> แก้ไขข้อมูล</button>
-                <button className='btn_Delete' onClick={deleteData}><i class="fa-solid fa-trash"></i> ลบข้อมูล</button>
+                <button className='btn_Back' onClick={backToHome}><i className="fa-solid fa-caret-left"></i> ย้อนกลับ</button>
+                <button className='btn_Edit' onClick={editTheData}><i className="fa-solid fa-pencil"></i> แก้ไขข้อมูล</button>
+                <button className='btn_Delete' onClick={deleteData}><i className="fa-solid fa-trash"></i> ลบข้อมูล</button>
             </div>
         </div>
         <Footer/>

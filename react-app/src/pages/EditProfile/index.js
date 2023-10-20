@@ -211,8 +211,8 @@ function EditNaja({className}) {
                 </div>
         </div>
         <div className='button_zone'>
-                <button className='btn_Back'onClick={backToProfile}><i class="fa-solid fa-caret-left"></i> ย้อนกลับ</button>
-                <button className='btn_Edit' onClick={checkEdit}><i class="fa-solid fa-pencil"></i> ยืนยันการแก้ไข</button>
+                <button className='btn_Back'onClick={backToProfile}><i className="fa-solid fa-caret-left"></i> ย้อนกลับ</button>
+                <button className='btn_Edit' onClick={checkEdit}><i className="fa-solid fa-pencil"></i> ยืนยันการแก้ไข</button>
             </div>
         </div>
         <Footer/>

@@ -12,12 +12,15 @@ export function Navbar({className}){
     
     const navigate = useNavigate();
 
-    const [keyword, setKeywordfilter] = useState(getKeyword())
+    const [keyword, setKeyfilter] = useState(getKeyword())
+   
+    
     
  
 
     function search(){
         setKeyword(keyword)
+        // setKeyword(data)
         navigate('/Filterdata');
     }
 
@@ -30,6 +33,9 @@ export function Navbar({className}){
         navigate('/homepage')
     }
 
+    
+
+    
 
 
     return(
@@ -42,7 +48,7 @@ export function Navbar({className}){
                             <img className='profile' src={Logo} alt="My Hell Logo" onClick={backToHome}/>
 
                             <form className="d-flex" role="search">
-                                <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" value={keyword} onChange={(e) => setKeywordfilter(e.target.value)}/>
+                                <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" value={keyword} onChange={(e) => setKeyfilter(e.target.value)}/>
                                 <button className="buttonSearch" type="submit" onClick={search}> 
                                     <i className="fa-solid fa-magnifying-glass"></i>
                                 </button>
@@ -50,7 +56,7 @@ export function Navbar({className}){
 
                             <div className="dropdown">
                                 <select className='dropdownBox' onChange={(e) => filterHell(e.target.value)}>
-                                    <option value="" selected>เลือกขุมนรก</option>
+                                    <option value="" >เลือกขุมนรก</option>
                                     <option value="1 ป่ามรณะ">ขุม 1 : ป่ามรณะ</option>
                                     <option value="2 ปราสาทแห่งความหวัง">ขุม 2 : ปราสาทแห่งความหวัง</option>
                                     <option value="3 หวานแต่เค็ม">ขุม 3 : หวานแต่เค็ม</option>
