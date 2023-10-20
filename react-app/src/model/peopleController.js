@@ -81,7 +81,8 @@ export function getKeyword(){
 
 export const filterDataByFname = (data, name) => {
   try {
-    const filteredData = data.filter(item => item.fname.includes(name));
+    const lowerCaseName = name.toLowerCase();
+    const filteredData = data.filter(item => item.fname.toLowerCase().includes(lowerCaseName));
     return filteredData;
   } catch (error) {
     console.error(`Error filtering data by fname (${name}):`, error);
