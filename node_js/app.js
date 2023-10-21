@@ -1,7 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
 
-const productRoutes = require('./peoples/peoples.controller');
+const peopleRoutes = require('./peoples/peoples.controller');
 const { connect, sync } = require('./config/database');
 
 async function initializeDatabase() {
@@ -30,7 +30,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(morgan('tiny'));
 
 // routes
-app.use('/peoples', productRoutes);
+app.use('/peoples', peopleRoutes);
 
 
 app.listen(8000, () => {
