@@ -67,36 +67,4 @@ export default styled(NavNotAtHomepage)`
 }
 
 
-/* height: 60px;
-
-
-.navbar{
-    
-    width: 100vmax;
-    height: 60px;
-
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-content: center;
-    align-items: center;
-    background-color: red;
-}
-
-.profile_zone{
-    width: 20%;
-    padding-left: 50px;
-}
-
-
-.searchZone{
-    width: 60%;
- 
-}
-
-.kump{
-    width: 20%;
-  
-} */
-
 `

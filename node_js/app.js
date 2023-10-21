@@ -8,27 +8,31 @@ async function initializeDatabase() {
   await connect();
   await sync();
 }
+
 initializeDatabase();
 
 const app = express();
 
+// Setting ตัว cors
 const cors = require('cors');
 const corsOptions = {
-  origin: 'http://localhost:3000', // หรือโดเมนต้นทางของแอป React ของคุณ
+  origin: 'http://localhost:3000', 
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
 };
 
+
+
+// middleware มี cors และ morgan
 app.use(cors(corsOptions));
 
-// Setting up middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(morgan('tiny'));
 
-// Setting up routes
+// routes
 app.use('/peoples', productRoutes);
 
-// Creating a server
+
 app.listen(8000, () => {
   console.log('Listening on port 8000');
 });
