@@ -296,6 +296,13 @@ padding-top: 100px;
   transition: 300ms;
 }
 
+.current-page-btn {
+    background-color: #CC2F37; 
+    color: #FFF;
+    border: solid 1px #CC2F37;
+    transition: 300ms;
+  }
+
 .page_btn:hover{
   background-color: #CC2F37;
   color: #FFF;
