@@ -66,8 +66,8 @@ function EditNaja({className}) {
             text: "กรุณาตรวจสอบข้อมูลให้ครบถ้วน!",
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
+            confirmButtonColor: '#4D7B29',
+            cancelButtonColor: '#CC2F37',
             confirmButtonText: 'ข้อมูลแม่นล้าา',
             cancelButtonText: 'ห๊ะ ขอกลับไปดูก่อน'
           }).then((result) => {
@@ -132,7 +132,7 @@ function EditNaja({className}) {
                         <input type="text" className="form-control" id="fname"  value={data.fname} onChange={(e) => setData({ ...data, fname: e.target.value })} />
                     </div>
                     <div className="input-right">
-                        <label htmlFor="lname">นามสกุล Username</label>
+                        <label htmlFor="lname">นามสกุล</label>
                         <input type="text" className="form-control" id="lname" value={data.lname}  onChange={(e) => setData({ ...data, lname: e.target.value })}/>
                     </div>
                 </div>
@@ -150,18 +150,18 @@ function EditNaja({className}) {
 
                 <div className="input-group">
                     <div className="input-left">
-                        <label htmlFor="causeOfdeath">สาเหตุการตาย</label>
+                        <label htmlFor="causeOfdeath">สาเหตุการตุย</label>
                         <input type="text" className="form-control" id="causeOfdeath" value={data.causeOfdeath} onChange={(e) => setData({ ...data, causeOfdeath: e.target.value })}/>
                     </div>
                     <div className="input-right">
-                        <label htmlFor="place">สถานที่ตาย</label>
+                        <label htmlFor="place">สถานที่ตุย</label>
                         <input type="text" className="form-control" id="place" value={data.place} onChange={(e) => setData({ ...data, place: e.target.value })}/>
                     </div>
                 </div>
 
                 <div className="input-group">
                     <div className="input-left">
-                        <label htmlFor="sin">คะแนนความชั่ว</label>
+                        <label htmlFor="sin">คะแนนความชั่ว %</label>
                         <input type="text" className="form-control" id="sin" value={data.sin} onChange={(e) => setData({ ...data, sin: e.target.value })}/>
                     </div>
                     <div className="input-right">

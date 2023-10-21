@@ -9,14 +9,8 @@ import { useNavigate } from 'react-router-dom';
 import { fetchData } from '../../model/peopleController';
 // import { getDataById } from '../../model/peopleController';
 import { setIdperson } from '../../model/peopleController';
+import Swal from 'sweetalert2'
 
-// import { getKeyword } from '../../model/peopleController';
-// import { filterDataByFname } from '../../model/peopleController';
-// import { filterDataByHell } from '../../model/peopleController';
-// import { getTheHell } from '../../model/peopleController';
-
-// import { setKeyword } from '../../model/peopleController';
-// import { setTheHell } from '../../model/peopleController';
 
 
 
@@ -26,49 +20,6 @@ import { setIdperson } from '../../model/peopleController';
 function Homepage({className}) {
 
   const [data, setData] = useState([]);
-
-  
-  
-  // useEffect(() => {
-
-  //       const filter = async () => {
-  //         try {
-  //             const result = await fetchData('peoples') 
-        
-  //             // setKeyword(getKeyword());
-  //             const keyword = getKeyword();
-  //             const theHell = getTheHell();
-              
-  //             console.log('This Data :' + keyword)
-
-  //             if(keyword !== '' && theHell !== ''){
-  //                 const filteredDataByFname = filterDataByFname(result, keyword);
-  //                 const filteredDataByHell = await filterDataByHell(filteredDataByFname, theHell);
-  //                 setData(filteredDataByHell);
-  //             }else if (keyword !== '' ) {
-  //               const filteredDataByFname = filterDataByFname(result, keyword);
-  //               setData(filteredDataByFname);
-  //             }else if (theHell !== '') {
-  //               const filteredDataByHell = await filterDataByHell(result, theHell);
-  //               setData(filteredDataByHell);
-  //             }
-  //             else if (keyword === '' && theHell === ''){
-  //               fetchData('peoples') 
-  //               .then((result) => {
-  //                 setData(result);
-  //               })
-  //               .catch((error) => {
-  //                 console.error(error);
-  //               });
-  //             }     
-      
-  //         } catch (error) {
-  //           console.error(error);
-  //         }
-  //       };
-
-  //     filter();
-  // }, [(getKeyword() , getTheHell())]);
 
 
   useEffect(() => {
@@ -113,11 +64,37 @@ function Homepage({className}) {
     setCurrentPage(page);
   };
 
+  function logout(){
+      Swal.fire({
+          title: 'ท่านจะออกจากระบบรึ?',
+          text: "คิดดีๆนะท่าน!",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#4D7B29',
+          cancelButtonColor: '#CC2F37',
+          confirmButtonText: 'แม่นล้าา',
+          cancelButtonText: 'ห๊ะ ยังๆๆ'
+        }).then((result) => {
+          if (result.isConfirmed) {
+              navigate('/')
+            Swal.fire(
+              'เรียบร้อย นะจ๊ะ!',
+              'แก้ไขข้อมูลแล้วเด้อ',
+              'สำเร็จแล้วเด้อ'
+            )
+          
+   
+    }
+  })}
+  
+
 
   return (
     <>
     <Navbar/> 
       <div className={className}>
+        
+        <button className='logout' onClick={logout}>Logout</button>
         
         <div className='table_Container'>
           <h1 className='welcome_header'>Welcome to NaRok</h1>
@@ -267,6 +244,25 @@ padding-top: 100px;
   transition: 300ms;
 }
 
+.logout{
+  border: none;
+  background-color: #CC2F37;
+  border-radius: 5px;
+  color: #FFF;
+  font-size: 18px;
+
+  position: absolute;
+  left: 30px;
+
+  transition: 300ms;
+}
+
+.logout:hover{
+  background-color: #FF303B;
+  border-radius: 5px;
+  color: #FFF;
+  transition: 300ms;
+}
 
 
 `

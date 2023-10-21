@@ -2,6 +2,9 @@ import React from 'react'
 import styled from 'styled-components'
 
 function Footer({className}) {
+
+
+
   return (
     <div className={className}>
     <footer className="footer_naja">

@@ -34,8 +34,8 @@ function Profile({className}) {
             text: "ต้องการปลดปล่อยวิญญาณตนนี้ จริงๆรึ?",
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
+            confirmButtonColor: '#4D7B29',
+            cancelButtonColor: '#CC2F37',
             confirmButtonText: 'ปลดปล่อย ชิ้วๆ',
             cancelButtonText: 'มั่ย'
           }).then((result) => {
@@ -77,7 +77,7 @@ function Profile({className}) {
                         <label type="text" className="form-control" id="fname" placeholder="ชื่อจริง" >{data.fname}</label>
                     </div>
                     <div className="input-right">
-                        <label htmlFor="lname">นามสกุล Username</label>
+                        <label htmlFor="lname">นามสกุล</label>
                         <label type="text" className="form-control" id="lname" placeholder="นามสกุล" >{data.lname}</label>
                     </div>
                 </div>
@@ -95,18 +95,18 @@ function Profile({className}) {
 
                 <div className="input-group">
                     <div className="input-left">
-                        <label htmlFor="causeOfdeath">สาเหตุการตาย</label>
+                        <label htmlFor="causeOfdeath">สาเหตุการตุย</label>
                         <label type="text" className="form-control" id="causeOfdeath" placeholder="สาเหตุการตาย" >{data.causeOfdeath}</label>
                     </div>
                     <div className="input-right">
-                        <label htmlFor="place">สถานที่ตาย</label>
+                        <label htmlFor="place">สถานที่ตุย</label>
                         <label type="text" className="form-control" id="place" placeholder="สถานที่ตาย" >{data.place}</label>
                     </div>
                 </div>
 
                 <div className="input-group">
                     <div className="input-left">
-                        <label htmlFor="sin">คะแนนความชั่ว</label>
+                        <label htmlFor="sin">คะแนนความชั่ว %</label>
                         <label type="text" className="form-control" id="sin" placeholder="คะแนนความชั่ว" >{data.sin}</label>
                     </div>
                     <div className="input-right">

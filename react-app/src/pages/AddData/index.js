@@ -118,7 +118,7 @@ function AddData({className}) {
                         <input type="text" className="form-control" id="fname" placeholder="ชื่อจริง" value={fname} onChange={(e) => setFname(e.target.value)} />
                     </div>
                     <div className="input-right">
-                        <label htmlFor="lname">นามสกุล Username</label>
+                        <label htmlFor="lname">นามสกุล</label>
                         <input type="text" className="form-control" id="lname" placeholder="นามสกุล" value={lname} onChange={(e) => setLname(e.target.value)}/>
                     </div>
                 </div>
@@ -136,18 +136,18 @@ function AddData({className}) {
 
                 <div className="input-group">
                     <div className="input-left">
-                        <label htmlFor="causeOfdeath">สาเหตุการตาย</label>
+                        <label htmlFor="causeOfdeath">สาเหตุการตุย</label>
                         <input type="text" className="form-control" id="causeOfdeath" placeholder="สาเหตุการตาย" value={causeOfdeath} onChange={(e) => setCauseOfdeath(e.target.value)}/>
                     </div>
                     <div className="input-right">
-                        <label htmlFor="place">สถานที่ตาย</label>
+                        <label htmlFor="place">สถานที่ตุย</label>
                         <input type="text" className="form-control" id="place" placeholder="สถานที่ตาย" value={place} onChange={(e) => setPlace(e.target.value)}/>
                     </div>
                 </div>
 
                 <div className="input-group">
                     <div className="input-left">
-                        <label htmlFor="sin">คะแนนความชั่ว</label>
+                        <label htmlFor="sin">คะแนนความชั่ว %</label>
                         <input type="text" className="form-control" id="sin" placeholder="คะแนนความชั่ว" value={sin} onChange={(e) => setSin(e.target.value)}/>
                     </div>
                     <div className="input-right">
